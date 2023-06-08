@@ -1,0 +1,65 @@
+{
+    "name": "gourdain.jf/takso",
+    "description": "Fiche d'évaluation examen DWWM",
+    "license": "MIT",
+    "config": {
+        "platform": {
+            "php": "8.2"
+        },
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Tests\\": "src/Tests/",
+            "Exception\\": "src/Exception/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JFG",
+            "email": "jf.gourdain@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "fortawesome/font-awesome": "^6.3",
+        "nunomaduro/phpinsights": "^2.8",
+        "phpstan/phpstan": "^1.9",
+        "phpunit/php-code-coverage": "^10.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/phpunit-watcher": "^1.23",
+        "squizlabs/php_codesniffer": "^3.7",
+        "symfony/var-dumper": "^6.2",
+        "twbs/bootstrap": "^5.2"
+    },
+    "require": {
+        "twig/intl-extra": "^3.5",
+        "twig/string-extra": "^3.5",
+        "twig/twig": "^3.6",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "scripts": {
+        "stan": "vendor/bin/phpstan analyse -c conf/phpstan.neon",
+        "insights": "vendor/bin/phpinsights --config-path=conf/phpinsights.php",
+        "insights-fix": "vendor/bin/phpinsights --f composer --config-path=conf/phpinsights.php",
+        "insights-summary": "vendor/bin/phpinsights -s --config-path=conf/phpinsights.php",
+        "format": "vendor/bin/phpcs --standard=PSR12 src",
+        "format-fix": "vendor/bin/phpcbf src",
+        "purge": "purgecss -c conf/purgecss.config.js",
+        "tsc": "tsc -p conf/tsconfig.json",
+        "tests": "vendor/bin/phpunit -c conf/phpunit.xml.dist",
+        "tests-coverage": "vendor/bin/phpunit -c conf/phpunit.xml.dist --coverage-html coverage",
+        "tests-watcher": "vendor/bin/phpunit-watcher watch -c conf/phpunit-watcher.yml",
+        "post-update-cmd": [
+            "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/assets/css/",
+            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/assets/js/",
+            "cp -R vendor/fortawesome/font-awesome/css/all.min.css public/assets/css/",
+            "cp -R vendor/fortawesome/font-awesome/webfonts/ public/assets/",
+            "npm install",
+            "vendor/bin/phpunit -c conf/phpunit.xml.dist"
+        ]
+    }
+}

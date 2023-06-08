@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "../public/assets/js",
+        "target": "ES2022",
+        "noEmitOnError": false,
+        "strict": true,
+        "noUncheckedIndexedAccess": true
+    },
+    "include": [
+        "../public/assets/ts-scss/ts/**/*"
+    ]
+}
