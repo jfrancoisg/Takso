@@ -16,9 +16,12 @@
                 <link rel="stylesheet" href="/assets/css/style.min.css">
             </head>
             <body>
+                {% include "partial/header.twig" %}
                 {% block main %}{% endblock %}
                 <script src="/assets/js/bootstrap.min.js"></script>
+                <script src="/assets/js/app.js"></script>
                 {% block js %}{% endblock %}
+                {% include "partial/footer.twig" %}
             </body>
         </html>
         {% endapply %}

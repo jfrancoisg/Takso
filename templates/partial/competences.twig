@@ -1,0 +1,19 @@
+{# Compétences #}
+        <ul>
+            {% for competence in frontCompetenceListe %}
+                <li>
+                    <input type="checkbox" name="" id="{{ competence.id }}">
+                    <input type="checkbox" name="" id="{{ competence.id }}">
+                    {{ competence.nom }}
+                </li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for competence in backCompetenceListe %}
+                <li>
+                    <input type="checkbox" name="" id="{{ competence.id }}">
+                    <input type="checkbox" name="" id="{{ competence.id }}">
+                    {{ competence.nom }}
+                </li>
+            {% endfor %}
+        </ul>

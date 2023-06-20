@@ -9,11 +9,11 @@
  *
  * @package Interface
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link www.mipih.fr
+ * @link film-horreur.fr
  */
 
 declare(strict_types=1);
@@ -29,11 +29,11 @@ use PDO;
  *
  * @package Connexion
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link www.mipih.fr
+ * @link film-horreur.fr
  */
 interface Iconnect
 {

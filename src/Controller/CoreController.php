@@ -9,11 +9,11 @@
  *
  * @package Core
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link https://www.mipih.fr
+ * @link https://film-horreur.fr
  */
 
 declare(strict_types=1);
@@ -31,11 +31,11 @@ use Twig\Extra\String\StringExtension;
  *
  * @package Core
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link https://www.mipih.fr
+ * @link https://film-horreur.fr
  */
 abstract class CoreController
 {
@@ -60,7 +60,7 @@ abstract class CoreController
             ]
         );
         $httpHost = filter_input(INPUT_SERVER, 'HTTP_HOST');
-        $twig->addGlobal('title', 'Interface');
+        $twig->addGlobal('title', 'Fiche évaluation');
         $twig->addGlobal('httpHost', $httpHost);
 
         $twig->addExtension(new DebugExtension());

@@ -9,11 +9,11 @@
  *
  * @package Model
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link www.mipih.fr
+ * @link film-horreur.fr
  */
 
 declare(strict_types=1);
@@ -27,11 +27,11 @@ namespace App\Interface;
  *
  * @package Model
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link www.mipih.fr
+ * @link film-horreur.fr
  */
 interface Imodel
 {

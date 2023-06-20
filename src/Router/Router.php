@@ -9,17 +9,18 @@
  *
  * @package Router
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link www.mipih.fr
+ * @link film-horreur.fr
  */
 
 declare(strict_types=1);
 
 namespace App\Router;
 
+use App\Controller\FicheController;
 use Exception\Class\MethodNotExist;
 use Exception\Controller\ErreurController;
 
@@ -30,11 +31,11 @@ use Exception\Controller\ErreurController;
  *
  * @package Router
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link www.mipih.fr
+ * @link film-horreur.fr
  */
 final class Router
 {
@@ -86,8 +87,10 @@ final class Router
      * @param object $controller Controlleur
      * @param string $action     Action a vérifiée
      */
-    private function methodExist(object $controller, string $action): void
-    {
+    private function methodExist(
+        FicheController $controller,
+        string $action
+    ): void {
         if (method_exists($controller, $action)) {
             $this->param !== '' ?
                 $controller->$action($this->param) :

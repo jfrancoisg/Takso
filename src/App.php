@@ -9,11 +9,11 @@
  *
  * @package Factory
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license
  *
- * @link www.mipih.fr
+ * @link film-horreur.fr
  */
 
 declare(strict_types=1);
@@ -29,11 +29,11 @@ use App\Class\Connect;
  *
  * @package Factory
  *
- * @author JFG <gourdain.jf@mipih.fr>
+ * @author JFG <jf.gourdain@mail.com>
  *
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  *
- * @link www.mipih.fr
+ * @link film-horreur.fr
  */
 final class App
 {
@@ -53,7 +53,7 @@ final class App
     /**
      * Instancie une model.
      *
-     * @param string $nameModel Nom de la classe à instancier
+     * @param string $nameModel Nom du model à instancier
      */
     public static function getModel(string $nameModel): object
     {
