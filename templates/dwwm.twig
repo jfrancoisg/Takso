@@ -3,7 +3,18 @@
         {% extends "layout.twig" %}
 
         {% block main %}
-            {% include "./partial/chronos.twig" %}
-            {% include "./partial/competences.twig" %}
-            {% include "./partial/back.twig" %}
+            <div class="container-fluid">
+                <form method="post" class="form-dwwm" id="formDwwm">
+                    <div class="temps">{% include "./partial/temps.twig" %}</div>
+                    <div class="chrono">{% include "./partial/chrono.twig" %}</div>
+                    <div class="competence">{% include "./partial/competences.twig" %}</div>
+                    <div class="back">{% include "./partial/back.twig" %}</div>
+                    <div class="front">{% include "./partial/front.twig" %}</div>
+                    <div class="securite">{% include "./partial/securite.twig" %}</div>
+                    <div class="autres">{% include "./partial/autres.twig" %}</div>
+                    <div class="parametre_examen">{% include "./partial/parametre_examen.twig" %}</div>
+                    <div class="commentaire">{% include "./partial/commentaire.twig" %}</div>
+                    <div class="entretien_final">{% include "./partial/entretien_final.twig" %}</div>
+                </form>
+            </div>
         {% endblock %}

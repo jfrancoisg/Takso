@@ -1,0 +1,61 @@
+.form-dwwm {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 70px repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
+.parametre_examen {
+    display: flex;
+    width: 100%;
+    gap: 0 10px;
+}
+
+.item {
+    flex-grow: 1;
+}
+
+.nom {
+    flex-grow: 2;
+}
+
+.back {
+    grid-area: 3 / 1 / 5 / 3;
+}
+
+.front {
+    grid-area: 3 / 3 / 5 / 5;
+}
+
+.securite {
+    grid-area: 3 / 5 / 4 / 7;
+}
+
+.autres {
+    grid-area: 4 / 5 / 5 / 7;
+}
+
+.entretien_final {
+    grid-area: 3 / 7 / 5 / 9;
+}
+
+.competence {
+    grid-area: 1 / 7 / 3 / 9;
+}
+
+.parametre_examen {
+    grid-area: 1 / 1 / 2 / 7;
+}
+
+.temps {
+    grid-area: 2 / 1 / 3 / 4;
+}
+
+.chrono {
+    grid-area: 2 / 4 / 3 / 5;
+}
+
+.commentaire {
+    grid-area: 2 / 5 / 3 / 7;
+}
