@@ -1,19 +1,146 @@
-import { Chrono } from '../ts/Chrono';
-const chrono = new Chrono();
-const chrono2 = new Chrono();
-function startButtonClicked() {
-    chrono.start();
+"use strict";
+let chrono = document.querySelector("#chronometre");
+let startBtnP = document.querySelector("#pStart");
+let stopBtnP = document.querySelector("#pEnd");
+let startBtnEt = document.querySelector("#etStart");
+let stopBtnEt = document.querySelector("#etEnd");
+let startBtnEf = document.querySelector("#efStart");
+let stopBtnEf = document.querySelector("#efEnd");
+let debutPInput = document.querySelector("#pHeureDebut");
+let finPInput = document.querySelector("#pHeureFin");
+let debutEtInput = document.querySelector("#etHeureDebut");
+let finEtInput = document.querySelector("#etHeureFin");
+let debutEfInput = document.querySelector("#efHeureDebut");
+let finEfInput = document.querySelector("#efHeureFin");
+let reelP = document.querySelector("#reelP");
+let reelEt = document.querySelector("#reelEt");
+let reelEf = document.querySelector("#reelEf");
+let heures = 0;
+let minutes = 0;
+let secondes = 0;
+let h = "";
+let min = "";
+let sec = "";
+let timeout = 0;
+let time = "";
+let limit = 0;
+let hLimit = 0;
+let estArrete = true;
+stopBtnP.disabled = true;
+startBtnEt.disabled = true;
+stopBtnEt.disabled = true;
+startBtnEf.disabled = true;
+stopBtnEf.disabled = true;
+function demarrerP() {
+    if (estArrete) {
+        debutPInput.value = heure();
+        startBtnP.disabled = true;
+        stopBtnP.disabled = false;
+        estArrete = false;
+        limit = 1;
+        defilerTemps();
+    }
 }
-function stopButtonClicked() {
-    chrono.stop();
+;
+function arreterP() {
+    if (!estArrete) {
+        finPInput.value = heure();
+        stopBtnP.disabled = true;
+        startBtnEt.disabled = false;
+        reelP.value = "" + time;
+        chrono.style.color = "green";
+        reelP.style.color = heureColor(minutes, limit, hLimit);
+        reset();
+        clearTimeout(timeout);
+    }
 }
-const start1 = document.querySelector('#start1');
-const stop1 = document.querySelector('#stop1');
-const start2 = document.querySelector('#start2');
-const stop2 = document.querySelector('#stop2');
-const heure1 = document.querySelector('#heure');
-const heure2 = document.querySelector('#heure');
-start1?.addEventListener('click', startButtonClicked);
-stop1?.addEventListener('click', stopButtonClicked);
-start2?.addEventListener('click', startButtonClicked);
-stop2?.addEventListener('click', stopButtonClicked);
+;
+function demarrerEt() {
+    if (estArrete) {
+        debutEtInput.value = heure();
+        startBtnEt.disabled = true;
+        stopBtnEt.disabled = false;
+        estArrete = false;
+        limit = 40;
+        defilerTemps();
+    }
+}
+;
+function arreterEt() {
+    if (!estArrete) {
+        finEtInput.value = heure();
+        stopBtnEt.disabled = true;
+        startBtnEf.disabled = false;
+        reelEt.value = "" + time;
+        chrono.style.color = "green";
+        reelEt.style.color = heureColor(minutes, limit, hLimit);
+        reset();
+        clearTimeout(timeout);
+    }
+}
+;
+function demarrerEf() {
+    if (estArrete) {
+        debutEfInput.value = heure();
+        startBtnEf.disabled = true;
+        stopBtnEf.disabled = false;
+        estArrete = false;
+        limit = 15;
+        defilerTemps();
+    }
+}
+;
+function arreterEf() {
+    if (!estArrete) {
+        finEfInput.value = heure();
+        stopBtnEf.disabled = true;
+        reelEf.value = "" + time;
+        chrono.style.color = "green";
+        reelEf.style.color = heureColor(minutes, limit, hLimit);
+        reset();
+        clearTimeout(timeout);
+    }
+}
+;
+function defilerTemps() {
+    if (estArrete)
+        return;
+    secondes++;
+    if (secondes == 60) {
+        minutes++;
+        secondes = 0;
+    }
+    if (minutes == 60) {
+        heures++;
+        minutes = 0;
+    }
+    sec = (secondes < 10) ? "0" + secondes : "" + secondes;
+    min = (minutes < 10) ? "0" + minutes : "" + minutes;
+    h = (heures < 10) ? "0" + heures : "" + heures;
+    hLimit = Math.ceil(limit * 1.05);
+    // console.log(hLimit, limit)
+    chrono.style.color = heureColor(minutes, limit, hLimit);
+    // (minutes < limit) ? "green" : (minutes >= hLimit) ? "red" : "orange"
+    time = `${h}:${min}:${sec}`;
+    chrono.textContent = `${h}:${min}:${sec}`;
+    timeout = setTimeout(defilerTemps, 1000);
+}
+;
+function heureColor(m, l, hL) {
+    return (m < l) ? "green" : (m >= hL) ? "red" : "orange";
+}
+function reset() {
+    chrono.textContent = "00:00:00";
+    estArrete = true;
+    heures = 0;
+    minutes = 0;
+    secondes = 0;
+    clearTimeout(timeout);
+}
+;
+function heure() {
+    const date = new Date();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+}
