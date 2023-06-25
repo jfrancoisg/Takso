@@ -20,9 +20,9 @@ declare(strict_types=1);
 
 namespace App\Router;
 
-use App\Controller\FicheController;
 use Exception\Class\MethodNotExist;
 use Exception\Controller\ErreurController;
+use App\Interface\Icontroller;
 
 /**
  * Router.
@@ -88,7 +88,7 @@ final class Router
      * @param string $action     Action a vérifiée
      */
     private function methodExist(
-        FicheController $controller,
+        object $controller,
         string $action
     ): void {
         if (method_exists($controller, $action)) {

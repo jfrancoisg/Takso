@@ -4,7 +4,7 @@
 
         {% block main %}
             <div class="container dwwm">
-                <form method="post" class="form-dwwm" id="formDwwm" action="ficher/compteRendu/dwwm">
+                <form method="post" class="form-dwwm" id="formDwwm" action="/compteRendu/dwwm">
                     <div class="temps">{% include "./partial/temps.twig" %}</div>
                     <div class="chrono">{% include "./partial/chrono.twig" %}</div>
                     <div class="back">{% include "./partial/back.twig" %}</div>
@@ -13,6 +13,7 @@
                     <div class="autres">{% include "./partial/autres.twig" %}</div>
                     <div class="parametre_examen">{% include "./partial/parametre_examen.twig" %}</div>
                     <div class="commentaire">{% include "./partial/commentaire.twig" %}</div>
+                    <button>Compte rendu</button>
                 </form>
             </div>
         {% endblock %}

@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\App;
-use App\Enum\Connaissances;
 
-final class FicheController extends CoreController
+final class CompteRenduController extends CoreController
 {
     public function index(): void
     {
@@ -17,12 +16,15 @@ final class FicheController extends CoreController
     public function dwwm(): void
     {
         $data = [];
-        $competance = App::getModel('competance');
 
-        $data['connaissances'] =  $competance->getConnaissanceById(Connaissances::Back->value);
+        $competance = App::getModel('competance');
+        $data['frontCompetenceListe'] = $competance->getListGroupByType();
+        $data['backCompetenceListe'] = $competance->getListGroupByType(2);
+
+        dump($_POST);
 
         $this->render(
-            'dwwm',
+            'compteRendu',
             $data
         );
     }

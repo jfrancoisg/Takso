@@ -39,11 +39,6 @@ use Twig\Extra\String\StringExtension;
  */
 abstract class CoreController
 {
-    public function index(): void
-    {
-        $this->render('index');
-    }
-
     /**
      * Affiche un template.
      *
