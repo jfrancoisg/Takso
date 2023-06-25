@@ -4,7 +4,7 @@ module.exports = {
     ],
     css: [
         'public/assets/css/bootstrap.min.css',
-        'public/assets/css/all.min.css'
+        'public/assets/css/font-awesome.min.css'
     ],
     keyframes: true,
     rejected: true,

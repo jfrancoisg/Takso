@@ -37,7 +37,7 @@ function demarrerP() {
         startBtnP.disabled = true;
         stopBtnP.disabled = false;
         estArrete = false;
-        limit = 1;
+        limit = 35;
         defilerTemps();
     }
 }
@@ -47,8 +47,8 @@ function arreterP() {
         finPInput.value = heure();
         stopBtnP.disabled = true;
         startBtnEt.disabled = false;
-        reelP.value = "" + time;
         chrono.style.color = "green";
+        reelP.value = "" + time;
         reelP.style.color = heureColor(minutes, limit, hLimit);
         reset();
         clearTimeout(timeout);
@@ -71,8 +71,8 @@ function arreterEt() {
         finEtInput.value = heure();
         stopBtnEt.disabled = true;
         startBtnEf.disabled = false;
-        reelEt.value = "" + time;
         chrono.style.color = "green";
+        reelEt.value = "" + time;
         reelEt.style.color = heureColor(minutes, limit, hLimit);
         reset();
         clearTimeout(timeout);
@@ -94,8 +94,8 @@ function arreterEf() {
     if (!estArrete) {
         finEfInput.value = heure();
         stopBtnEf.disabled = true;
-        reelEf.value = "" + time;
         chrono.style.color = "green";
+        reelEf.value = "" + time;
         reelEf.style.color = heureColor(minutes, limit, hLimit);
         reset();
         clearTimeout(timeout);
@@ -118,9 +118,7 @@ function defilerTemps() {
     min = (minutes < 10) ? "0" + minutes : "" + minutes;
     h = (heures < 10) ? "0" + heures : "" + heures;
     hLimit = Math.ceil(limit * 1.05);
-    // console.log(hLimit, limit)
     chrono.style.color = heureColor(minutes, limit, hLimit);
-    // (minutes < limit) ? "green" : (minutes >= hLimit) ? "red" : "orange"
     time = `${h}:${min}:${sec}`;
     chrono.textContent = `${h}:${min}:${sec}`;
     timeout = setTimeout(defilerTemps, 1000);

@@ -2,17 +2,17 @@
         <ul>
             {% for competence in frontCompetenceListe %}
                 <li>
-                    <input type="checkbox" name="" id="{{ competence.id }}">
-                    <input type="checkbox" name="" id="{{ competence.id }}">
-                    {{ competence.nom }}
+                    <input type="checkbox" class="form-check-input" name="" id="{{ competence.id }}">
+                    <input type="checkbox" class="form-check-input" name="" id="{{ competence.id }}">
+                    <label>{{ competence.nom }}</label>
                 </li>
             {% endfor %}
         </ul>
         <ul>
             {% for competence in backCompetenceListe %}
                 <li>
-                    <input type="checkbox" name="" id="{{ competence.id }}">
-                    <input type="checkbox" name="" id="{{ competence.id }}">
+                    <input type="checkbox" class="form-check-input" name="" id="{{ competence.id }}">
+                    <input type="checkbox" class="form-check-input" name="" id="{{ competence.id }}">
                     {{ competence.nom }}
                 </li>
             {% endfor %}

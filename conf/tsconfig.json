@@ -3,7 +3,9 @@
         "outDir": "../public/assets/js",
         "target": "ES2022",
         "noEmitOnError": false,
+        "removeComments": true,
         "strict": true,
+        "compress": true,
         "noUncheckedIndexedAccess": true
     },
     "include": [
