@@ -1,70 +1,69 @@
-let chrono = <HTMLDivElement>document.querySelector("#chronometre")
+const chrono = <HTMLDivElement>document.querySelector("#chronometre")
 
-let startBtnP = <HTMLButtonElement>document.querySelector("#pStart")
-let stopBtnP = <HTMLButtonElement>document.querySelector("#pEnd")
+const startBtnP = <HTMLButtonElement>document.querySelector("#pStart")
+const stopBtnP = <HTMLButtonElement>document.querySelector("#pEnd")
 
-let startBtnEt = <HTMLButtonElement>document.querySelector("#etStart")
-let stopBtnEt = <HTMLButtonElement>document.querySelector("#etEnd")
+const startBtnEt = <HTMLButtonElement>document.querySelector("#etStart")
+const stopBtnEt = <HTMLButtonElement>document.querySelector("#etEnd")
 
-let startBtnEf = <HTMLButtonElement>document.querySelector("#efStart")
-let stopBtnEf = <HTMLButtonElement>document.querySelector("#efEnd")
+const startBtnEf = <HTMLButtonElement>document.querySelector("#efStart")
+const stopBtnEf = <HTMLButtonElement>document.querySelector("#efEnd")
 
-let debutPInput = <HTMLInputElement>document.querySelector("#pHeureDebut")
-let finPInput = <HTMLInputElement>document.querySelector("#pHeureFin")
+const debutPInput = <HTMLInputElement>document.querySelector("#pHeureDebut")
+const finPInput = <HTMLInputElement>document.querySelector("#pHeureFin")
 
-let debutEtInput = <HTMLInputElement>document.querySelector("#etHeureDebut")
-let finEtInput = <HTMLInputElement>document.querySelector("#etHeureFin")
+const debutEtInput = <HTMLInputElement>document.querySelector("#etHeureDebut")
+const finEtInput = <HTMLInputElement>document.querySelector("#etHeureFin")
 
-let debutEfInput = <HTMLInputElement>document.querySelector("#efHeureDebut")
-let finEfInput = <HTMLInputElement>document.querySelector("#efHeureFin")
+const debutEfInput = <HTMLInputElement>document.querySelector("#efHeureDebut")
+const finEfInput = <HTMLInputElement>document.querySelector("#efHeureFin")
 
-let reelP = <HTMLInputElement>document.querySelector("#reelP")
-let reelEt = <HTMLInputElement>document.querySelector("#reelEt")
-let reelEf = <HTMLInputElement>document.querySelector("#reelEf")
+const reelP = <HTMLInputElement>document.querySelector("#reelP")
+const reelEt = <HTMLInputElement>document.querySelector("#reelEt")
+const reelEf = <HTMLInputElement>document.querySelector("#reelEf")
 
-let heures = 0
-let minutes = 0
+const reelTotal = <HTMLInputElement>document.querySelector("#reelTotal")
+
 let secondes = 0
-
-let h = ""
-let min = ""
-let sec = ""
 
 let timeout = 0
 let time = ""
+let totalTime = 0
 
 let limit = 0
-let hLimit = 0
+let hLimitB1 = 0
+let hLimitB2 = 0
+let hLimitH1 = 0
+let hLimitH2 = 0
 
 let estArrete = true
 
-stopBtnP.disabled = true
-
-startBtnEt.disabled = true
-stopBtnEt.disabled = true
-
-startBtnEf.disabled = true
-stopBtnEf.disabled = true
+let dateP = new Date(0, 0, 0)
+let dateEt = new Date(0, 0, 0)
+let dateEf = new Date(0, 0, 0)
+let dateChrono = new Date(0, 0, 0)
 
 function demarrerP() {
     if (estArrete) {
-        debutPInput.value = heure()
+        debutPInput.value = new Date().toLocaleTimeString('fr')
         startBtnP.disabled = true
         stopBtnP.disabled = false
         estArrete = false
-        limit = 35
+        limit = 60 * 35
         defilerTemps()
     }
 };
 
 function arreterP() {
     if (!estArrete) {
-        finPInput.value = heure()
+        finPInput.value = new Date().toLocaleTimeString('fr')
         stopBtnP.disabled = true
         startBtnEt.disabled = false
-        chrono.style.color = "green"
-        reelP.value = "" + time
-        reelP.style.color = heureColor(minutes, limit, hLimit)
+        reelP.value = time
+        reelP.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2)
+        totalTime += secondes
+        reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr')
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2, 1.2)
         reset()
         clearTimeout(timeout)
     }
@@ -72,23 +71,26 @@ function arreterP() {
 
 function demarrerEt() {
     if (estArrete) {
-        debutEtInput.value = heure()
+        debutEtInput.value = new Date().toLocaleTimeString('fr')
         startBtnEt.disabled = true
         stopBtnEt.disabled = false
         estArrete = false
-        limit = 40
+        limit = 60 * 40
         defilerTemps()
     }
 };
 
 function arreterEt() {
     if (!estArrete) {
-        finEtInput.value = heure()
+        finEtInput.value = new Date().toLocaleTimeString('fr')
         stopBtnEt.disabled = true
         startBtnEf.disabled = false
-        chrono.style.color = "green"
-        reelEt.value = "" + time
-        reelEt.style.color = heureColor(minutes, limit, hLimit)
+        reelEt.value = time
+        reelEt.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2)
+        reelTotal.value += reelEt.value
+        totalTime += secondes
+        reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr')
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2, 1.2)
         reset()
         clearTimeout(timeout)
     }
@@ -96,22 +98,24 @@ function arreterEt() {
 
 function demarrerEf() {
     if (estArrete) {
-        debutEfInput.value = heure()
+        debutEfInput.value = new Date().toLocaleTimeString('fr')
         startBtnEf.disabled = true
         stopBtnEf.disabled = false
         estArrete = false
-        limit = 15
+        limit = 60 * 15
         defilerTemps()
     }
 };
 
 function arreterEf() {
     if (!estArrete) {
-        finEfInput.value = heure()
+        finEfInput.value = new Date().toLocaleTimeString('fr')
         stopBtnEf.disabled = true
-        chrono.style.color = "green"
-        reelEf.value = "" + time
-        reelEf.style.color = heureColor(minutes, limit, hLimit)
+        reelEf.value = time
+        reelEf.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2)
+        totalTime += secondes
+        reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr')
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2, 1.2)
         reset()
         clearTimeout(timeout)
     }
@@ -122,49 +126,35 @@ function defilerTemps() {
 
     secondes++
 
-    if (secondes == 60) {
-        minutes++
-        secondes = 0
-    }
+    hLimitB2 = limit / 1.1
+    hLimitB1 = limit / 1.05
 
-    if (minutes == 60) {
-        heures++
-        minutes = 0
-    }
+    hLimitH1 = limit * 1.05
+    hLimitH2 = limit * 1.1
 
-    sec = (secondes < 10) ? "0" + secondes : "" + secondes
-    min = (minutes < 10) ? "0" + minutes : "" + minutes
-    h = (heures < 10) ? "0" + heures : "" + heures
+    time = new Date(0, 0, 0, 0, 0, secondes).toLocaleTimeString('fr')
+    chrono.textContent = time
+    chrono.style.color = heureColor(secondes, limit, hLimitH2)
 
-    hLimit = Math.ceil(limit * 1.05)
-
-    // console.log(hLimit, limit)
-
-    chrono.style.color = heureColor(minutes, limit, hLimit)
-    // (minutes < limit) ? "green" : (minutes >= hLimit) ? "red" : "orange"
-
-    time = `${h}:${min}:${sec}`
-    chrono.textContent = `${h}:${min}:${sec}`
-
-    timeout = setTimeout(defilerTemps, 1000)
+    timeout = setTimeout(defilerTemps, 1)
 };
 
-function heureColor(m: number, l: number, hL: number) {
-    return (m < l) ? "green" : (m >= hL) ? "red" : "orange"
+function heureReelColor(seconds: number, hLimitH1: number, hLimitH2: number, hLimitB1: number, hLimitB2: number, range: number = 1) {
+    return (seconds <= hLimitB2 / range || seconds >= hLimitH2 * range)
+        ? "red"
+        : (seconds <= hLimitB1 / range || seconds >= hLimitH1 * range)
+            ? "orange"
+            : "green"
+}
+
+function heureColor(seconds: number, limit: number, heureH: number, range: number = 1) {
+    return (seconds < limit) ? "green" : (secondes >= heureH) ? "red" : "orange"
 }
 
 function reset() {
     chrono.textContent = "00:00:00"
-    estArrete = true
-    heures = 0
-    minutes = 0
+    chrono.style.color = "green"
     secondes = 0
+    estArrete = true
     clearTimeout(timeout)
 };
-
-function heure() {
-    const date = new Date()
-    const hours = date.getHours().toString().padStart(2, '0')
-    const minutes = date.getMinutes().toString().padStart(2, '0')
-    return `${hours}:${minutes}`
-}

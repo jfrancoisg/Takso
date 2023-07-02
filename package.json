@@ -1,11 +1,14 @@
 {
+  "type": "module",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "typescript": "^4.9.5"
   },
   "dependencies": {
     "bootstrap": "^5.3.0",
+    "dayjs": "^1.11.8",
     "font-awesome": "^4.7.0",
+    "node-fetch": "^2.6.11",
     "sass": "^1.63.4"
   }
 }

@@ -1,12 +1,14 @@
 {
     "compilerOptions": {
-        "outDir": "../public/assets/js",
-        "target": "ES2022",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
         "noEmitOnError": false,
+        "noUncheckedIndexedAccess": true,
+        "outDir": "../public/assets/js",
         "removeComments": true,
         "strict": true,
-        "compress": true,
-        "noUncheckedIndexedAccess": true
+        "target": "ESNext"
     },
     "include": [
         "../public/assets/ts-scss/ts/**/*"

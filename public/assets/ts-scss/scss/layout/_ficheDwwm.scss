@@ -1,15 +1,15 @@
-.dwwm {
+.fiche-dwwm {
     .form-dwwm {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 70px 170px repeat(2, 1fr);
+        grid-template-rows: 50px 180px repeat(2, 1fr);
         grid-column-gap: 3px;
         grid-row-gap: 3px;
         grid-template-areas:
-            "P P P P P P"
-            "T T T H O O"
-            "B B F F S S"
-            "B B F F A A";
+            "P P P P P P P"
+            "T T T T H O O"
+            "B B F F S S ."
+            "B B F F A A .";
     }
 
     .parametre_examen {
@@ -65,5 +65,9 @@
 
     .chronometre {
         font-size: 2rem;
+    }
+
+    .demo {
+        grid-area: D;
     }
 }

@@ -1,55 +1,57 @@
 "use strict";
-let chrono = document.querySelector("#chronometre");
-let startBtnP = document.querySelector("#pStart");
-let stopBtnP = document.querySelector("#pEnd");
-let startBtnEt = document.querySelector("#etStart");
-let stopBtnEt = document.querySelector("#etEnd");
-let startBtnEf = document.querySelector("#efStart");
-let stopBtnEf = document.querySelector("#efEnd");
-let debutPInput = document.querySelector("#pHeureDebut");
-let finPInput = document.querySelector("#pHeureFin");
-let debutEtInput = document.querySelector("#etHeureDebut");
-let finEtInput = document.querySelector("#etHeureFin");
-let debutEfInput = document.querySelector("#efHeureDebut");
-let finEfInput = document.querySelector("#efHeureFin");
-let reelP = document.querySelector("#reelP");
-let reelEt = document.querySelector("#reelEt");
-let reelEf = document.querySelector("#reelEf");
-let heures = 0;
-let minutes = 0;
+const chrono = document.querySelector("#chronometre");
+const startBtnP = document.querySelector("#pStart");
+const stopBtnP = document.querySelector("#pEnd");
+const startBtnEt = document.querySelector("#etStart");
+const stopBtnEt = document.querySelector("#etEnd");
+const startBtnEf = document.querySelector("#efStart");
+const stopBtnEf = document.querySelector("#efEnd");
+const debutPInput = document.querySelector("#pHeureDebut");
+const finPInput = document.querySelector("#pHeureFin");
+const debutEtInput = document.querySelector("#etHeureDebut");
+const finEtInput = document.querySelector("#etHeureFin");
+const debutEfInput = document.querySelector("#efHeureDebut");
+const finEfInput = document.querySelector("#efHeureFin");
+const reelP = document.querySelector("#reelP");
+const reelEt = document.querySelector("#reelEt");
+const reelEf = document.querySelector("#reelEf");
+const reelTotal = document.querySelector("#reelTotal");
 let secondes = 0;
-let h = "";
-let min = "";
-let sec = "";
 let timeout = 0;
 let time = "";
+let totalTime = 0;
 let limit = 0;
-let hLimit = 0;
+let hLimitB1 = 0;
+let hLimitB2 = 0;
+let hLimitH1 = 0;
+let hLimitH2 = 0;
 let estArrete = true;
-stopBtnP.disabled = true;
-startBtnEt.disabled = true;
-stopBtnEt.disabled = true;
-startBtnEf.disabled = true;
-stopBtnEf.disabled = true;
+let dateP = new Date(0, 0, 0);
+let dateEt = new Date(0, 0, 0);
+let dateEf = new Date(0, 0, 0);
+let dateChrono = new Date(0, 0, 0);
 function demarrerP() {
     if (estArrete) {
-        debutPInput.value = heure();
+        debutPInput.value = new Date().toLocaleTimeString('fr');
         startBtnP.disabled = true;
         stopBtnP.disabled = false;
         estArrete = false;
-        limit = 35;
+        limit = 60 * 35;
         defilerTemps();
     }
 }
 ;
 function arreterP() {
     if (!estArrete) {
-        finPInput.value = heure();
+        finPInput.value = new Date().toLocaleTimeString('fr');
         stopBtnP.disabled = true;
         startBtnEt.disabled = false;
-        chrono.style.color = "green";
-        reelP.value = "" + time;
-        reelP.style.color = heureColor(minutes, limit, hLimit);
+        reelP.value = time;
+        reelP.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2);
+        totalTime += secondes;
+        reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr');
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1 * 1.2, hLimitH2 * 1.12, hLimitB1 / 1.2, hLimitB2 / 1.2);
+        console.log(secondes, hLimitH1 * 1.2, hLimitH2 * 1.12, hLimitB1 / 1.2, hLimitB2 / 1.2);
         reset();
         clearTimeout(timeout);
     }
@@ -57,23 +59,26 @@ function arreterP() {
 ;
 function demarrerEt() {
     if (estArrete) {
-        debutEtInput.value = heure();
+        debutEtInput.value = new Date().toLocaleTimeString('fr');
         startBtnEt.disabled = true;
         stopBtnEt.disabled = false;
         estArrete = false;
-        limit = 40;
+        limit = 60 * 40;
         defilerTemps();
     }
 }
 ;
 function arreterEt() {
     if (!estArrete) {
-        finEtInput.value = heure();
+        finEtInput.value = new Date().toLocaleTimeString('fr');
         stopBtnEt.disabled = true;
         startBtnEf.disabled = false;
-        chrono.style.color = "green";
-        reelEt.value = "" + time;
-        reelEt.style.color = heureColor(minutes, limit, hLimit);
+        reelEt.value = time;
+        reelEt.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2);
+        reelTotal.value += reelEt.value;
+        totalTime += secondes;
+        reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr');
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1 * 1.2, hLimitH2 * 1.2, hLimitB1 / 1.2, hLimitB2 / 1.2);
         reset();
         clearTimeout(timeout);
     }
@@ -81,22 +86,24 @@ function arreterEt() {
 ;
 function demarrerEf() {
     if (estArrete) {
-        debutEfInput.value = heure();
+        debutEfInput.value = new Date().toLocaleTimeString('fr');
         startBtnEf.disabled = true;
         stopBtnEf.disabled = false;
         estArrete = false;
-        limit = 15;
+        limit = 60 * 15;
         defilerTemps();
     }
 }
 ;
 function arreterEf() {
     if (!estArrete) {
-        finEfInput.value = heure();
+        finEfInput.value = new Date().toLocaleTimeString('fr');
         stopBtnEf.disabled = true;
-        chrono.style.color = "green";
-        reelEf.value = "" + time;
-        reelEf.style.color = heureColor(minutes, limit, hLimit);
+        reelEf.value = time;
+        reelEf.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2);
+        totalTime += secondes;
+        reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr');
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1 * 1.2, hLimitH2 * 1.2, hLimitB1 / 1.2, hLimitB2 / 1.2);
         reset();
         clearTimeout(timeout);
     }
@@ -106,39 +113,31 @@ function defilerTemps() {
     if (estArrete)
         return;
     secondes++;
-    if (secondes == 60) {
-        minutes++;
-        secondes = 0;
-    }
-    if (minutes == 60) {
-        heures++;
-        minutes = 0;
-    }
-    sec = (secondes < 10) ? "0" + secondes : "" + secondes;
-    min = (minutes < 10) ? "0" + minutes : "" + minutes;
-    h = (heures < 10) ? "0" + heures : "" + heures;
-    hLimit = Math.ceil(limit * 1.05);
-    chrono.style.color = heureColor(minutes, limit, hLimit);
-    time = `${h}:${min}:${sec}`;
-    chrono.textContent = `${h}:${min}:${sec}`;
-    timeout = setTimeout(defilerTemps, 1000);
+    hLimitB2 = limit / 1.1;
+    hLimitB1 = limit / 1.05;
+    hLimitH1 = limit * 1.05;
+    hLimitH2 = limit * 1.1;
+    time = new Date(0, 0, 0, 0, 0, secondes).toLocaleTimeString('fr');
+    chrono.textContent = time;
+    chrono.style.color = heureColor(secondes, limit, hLimitH2);
+    timeout = setTimeout(defilerTemps, 1);
 }
 ;
-function heureColor(m, l, hL) {
-    return (m < l) ? "green" : (m >= hL) ? "red" : "orange";
+function heureReelColor(seconds, hLimitH1, hLimitH2, hLimitB1, hLimitB2) {
+    return (seconds <= hLimitB2 || seconds >= hLimitH2)
+        ? "red"
+        : (seconds <= hLimitB1 || seconds >= hLimitH1)
+            ? "orange"
+            : "green";
+}
+function heureColor(seconds, limit, heureH) {
+    return (seconds < limit) ? "green" : (secondes >= heureH) ? "red" : "orange";
 }
 function reset() {
     chrono.textContent = "00:00:00";
-    estArrete = true;
-    heures = 0;
-    minutes = 0;
+    chrono.style.color = "green";
     secondes = 0;
+    estArrete = true;
     clearTimeout(timeout);
 }
 ;
-function heure() {
-    const date = new Date();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${hours}:${minutes}`;
-}

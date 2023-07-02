@@ -4,7 +4,7 @@
                 <div>
                     <label id="p-start">Début présentation</label>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="pHeureDebut" readonly>
+                        <input type="text" class="form-control form-control-sm" id="pHeureDebut" name="pHeureDebut" readonly>
                         <button type="button" onclick="demarrerP()" class="btn btn-primary btn-sm" id="pStart">GO</button>
                     </div>
                 </div>
@@ -13,17 +13,17 @@
                 <div>
                     <label for="p-end">Fin présentation</label>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="pHeureFin" readonly>
-                        <button type="button" onclick="arreterP()" class="btn btn-primary btn-sm" id="pEnd">Fin</button>
+                        <input type="text" class="form-control form-control-sm" id="pHeureFin" name="pHeureFin" readonly>
+                        <button type="button" onclick="arreterP()" class="btn btn-primary btn-sm" id="pEnd" disabled>Fin</button>
                     </div>
                 </div>
             </div>
             <div class="form-floating col-2">
-                <input type="text" class="form-control-plaintext" value="00:35:00">
+                <input type="text" class="form-control-plaintext" name"prep" value="00:35:00">
                 <label class="form-label">Prévue</label>
             </div>
             <div class="form-floating col-2">
-                <input type="text" id="reelP" class="form-control-plaintext">
+                <input type="text" id="reelP" name="reelP" class="form-control-plaintext">
                 <label class="form-label">Réel</label>
             </div>
         </div>
@@ -32,8 +32,8 @@
                 <div>
                     <label id="et-start">Début entretien technique</label>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="etHeureDebut" readonly>
-                        <button type="button" onclick="demarrerEt()" class="btn btn-primary btn-sm" id="etStart">GO</button>
+                        <input type="text" class="form-control form-control-sm" id="etHeureDebut" name="etStart" readonly>
+                        <button type="button" onclick="demarrerEt()" class="btn btn-primary btn-sm" name="etStart" id="etStart" disabled>GO</button>
                     </div>
                 </div>
             </div>
@@ -41,17 +41,17 @@
                 <div>
                     <label for="et-end">Fin entretien technique</label>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="etHeureFin" readonly>
-                        <button type="button" onclick="arreterEt()" class="btn btn-primary btn-sm" id="etEnd">Fin</button>
+                        <input type="text" class="form-control form-control-sm" id="etHeureFin" name="etStart" readonly>
+                        <button type="button" onclick="arreterEt()" class="btn btn-primary btn-sm" name="etEnd" id="etEnd" disabled>Fin</button>
                     </div>
                 </div>
             </div>
             <div class="form-floating col-2">
-                <input type="text" class="form-control-plaintext" value="00:40:00">
+                <input type="text" class="form-control-plaintext" name="preEt" value="00:40:00">
                 <label class="form-label">Prévue</label>
             </div>
             <div class="form-floating col-2">
-                <input type="text" id="reelEt" class="form-control-plaintext">
+                <input type="text" id="reelEt" name="reelEt" class="form-control-plaintext">
                 <label class="form-label">Réel</label>
             </div>
         </div>
@@ -60,8 +60,8 @@
                 <div>
                     <label id="ef-start">Début entretien final</label>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="efHeureDebut" readonly>
-                        <button type="button" onclick="demarrerEf()" class="btn btn-primary btn-sm" id="efStart">GO</button>
+                        <input type="text" class="form-control form-control-sm" id="efHeureDebut" name="efStart" readonly>
+                        <button type="button" onclick="demarrerEf()" class="btn btn-primary btn-sm" name="efStart" id="efStart" disabled>GO</button>
                     </div>
                 </div>
             </div>
@@ -69,17 +69,28 @@
                 <div>
                     <label for="ef-end">Fin entretien final</label>
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm" id="efHeureFin" readonly>
-                        <button type="button" onclick="arreterEf()" class="btn btn-primary btn-sm" id="efEnd">Fin</button>
+                        <input type="text" class="form-control form-control-sm" id="efHeureFin" name="efEnd" readonly>
+                        <button type="button" onclick="arreterEf()" class="btn btn-primary btn-sm" name="efEnd" id="efEnd" disabled>Fin</button>
                     </div>
                 </div>
             </div>
             <div class="form-floating col-2">
-                <input type="text" class="form-control-plaintext" value="00:15:00">
+                <input type="text" class="form-control-plaintext" name="preEf" value="00:15:00">
                 <label class="form-label">Prévue</label>
             </div>
             <div class="form-floating col-2">
-                <input type="text" id="reelEf" class="form-control-plaintext">
+                <input type="text" id="reelEf" name="reelEf" class="form-control-plaintext">
                 <label class="form-label">Réel</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="form-floating col-2">
+                <input type="text" class="form-control-plaintext" name="preTotal" value="01:30:00">
+                <label class="form-label">Total prévue</label>
+            </div>
+            <div class="form-floating col-2">
+                <input type="text" id="reelTotal" name="reelTotal" class="form-control-plaintext">
+                <label class="form-label">Total réel</label>
             </div>
         </div>
