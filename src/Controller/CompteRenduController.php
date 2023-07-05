@@ -21,8 +21,6 @@ final class CompteRenduController extends CoreController
         $data['frontCompetenceListe'] = $competance->getListGroupByType();
         $data['backCompetenceListe'] = $competance->getListGroupByType(2);
 
-        dump($_POST);
-
         $this->render(
             'compteRendu',
             $data

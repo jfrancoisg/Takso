@@ -3,17 +3,17 @@
         {% extends "layout.twig" %}
 
         {% block main %}
-            <div class="container fiche-dwwm">
+            <div class="container-fluid fiche-dwwm">
                 <form method="post" class="form-dwwm" id="formDwwm" action="/compteRendu/dwwm">
                     <div class="temps">{% include "./partial/temps.twig" %}</div>
                     <div class="chrono">{% include "./partial/chrono.twig" %}</div>
-                    <div class="back">{% include "./partial/back.twig" %}</div>
-                    <div class="front">{% include "./partial/front.twig" %}</div>
-                    <div class="securite">{% include "./partial/securite.twig" %}</div>
-                    <div class="autres">{% include "./partial/autres.twig" %}</div>
+                    <div class="back">{% include "./partial/back.twig"  with {'competence': competence}%}</div>
+                    <div class="front">{% include "./partial/front.twig"  with {'front': front}%}</div>
+                    <div class="securite">{% include "./partial/securite.twig"  with {'securite': securite}%}</div>
+                    <div class="autres">{% include "./partial/autres.twig"  with {'autres': autres}%}</div>
                     <div class="parametre_examen">{% include "./partial/parametre_examen.twig" %}</div>
                     <div class="commentaire">{% include "./partial/commentaire.twig" %}</div>
-                    <button>Compte rendu</button>
+                    <button type="submit" class="btn btn-outline-primary">Compte rendu</button>
                 </form>
             </div>
         {% endblock %}

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\App;
-use App\Enum\Connaissances;
 
 final class FicheController extends CoreController
 {
@@ -17,9 +16,10 @@ final class FicheController extends CoreController
     public function dwwm(): void
     {
         $data = [];
-        $competance = App::getModel('competance');
-
-        $data['connaissances'] =  $competance->getConnaissanceById(Connaissances::Back->value);
+        $data['back'] = App::getClass('competance')->getHtml(1);
+        $data['front'] = App::getClass('competance')->getHtml(2);
+        $data['securite'] = App::getClass('competance')->getHtml(3);
+        $data['autres'] = App::getClass('competance')->getHtml(4);
 
         $this->render(
             'dwwm',

@@ -136,7 +136,7 @@ function defilerTemps() {
     chrono.textContent = time
     chrono.style.color = heureColor(secondes, limit, hLimitH2)
 
-    timeout = setTimeout(defilerTemps, 1)
+    timeout = setTimeout(defilerTemps, 1000)
 };
 
 function heureReelColor(seconds: number, hLimitH1: number, hLimitH2: number, hLimitB1: number, hLimitB2: number, range: number = 1) {

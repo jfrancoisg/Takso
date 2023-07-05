@@ -17,7 +17,9 @@ final class Connect implements Iconnect
     private function __construct()
     {
         try {
-            $this->connection = new PDO('sqlite:C:\laragon\www\takso\db\db.sqlite');
+            $this->connection = new PDO(
+                'sqlite:C:\laragon\www\takso\db\db.sqlite'
+            );
 
             $this->connection->setAttribute(
                 PDO::ATTR_DEFAULT_FETCH_MODE,

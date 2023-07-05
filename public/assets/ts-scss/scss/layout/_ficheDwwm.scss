@@ -1,15 +1,17 @@
+$hauteur-area-temps: 250px;
+
 .fiche-dwwm {
     .form-dwwm {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 50px 180px repeat(2, 1fr);
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: 50px $hauteur-area-temps repeat(2, 1fr);
         grid-column-gap: 3px;
         grid-row-gap: 3px;
         grid-template-areas:
-            "P P P P P P P"
-            "T T T T H O O"
-            "B B F F S S ."
-            "B B F F A A .";
+            "P P P P P P P P"
+            "T T T H O O O O"
+            "B B F F S S A A"
+            "B B F F S S A A";
     }
 
     .parametre_examen {
@@ -17,34 +19,66 @@
         display: flex;
         width: 100%;
         gap: 0 10px;
-    }
 
-    .item {
-        flex-grow: 1;
-    }
+        .item {
+            flex-grow: 1;
+        }
 
-    .nom {
-        flex-grow: 2;
+        .nom {
+            flex-grow: 2;
+        }
     }
 
     .back {
         grid-area: B;
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     .front {
         grid-area: F;
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     .securite {
         grid-area: S;
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     .autres {
         grid-area: A;
-    }
 
-    .parametre_examen {
-        grid-area: P;
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     .temps {
@@ -57,17 +91,20 @@
         align-items: center;
         justify-content: center;
         background: url('../img/chrono.png') no-repeat center / contain;
+
+        .chronometre {
+            font-family: 'alarm-clock';
+            font-size: 1.7vw;
+        }
     }
 
     .commentaire {
         grid-area: O;
-    }
 
-    .chronometre {
-        font-size: 2rem;
-    }
-
-    .demo {
-        grid-area: D;
+        textarea {
+            height: $hauteur-area-temps;
+            min-height: $hauteur-area-temps;
+            resize: none;
+        }
     }
 }

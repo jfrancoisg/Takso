@@ -50,8 +50,7 @@ function arreterP() {
         reelP.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2);
         totalTime += secondes;
         reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr');
-        reelTotal.style.color = heureReelColor(secondes, hLimitH1 * 1.2, hLimitH2 * 1.12, hLimitB1 / 1.2, hLimitB2 / 1.2);
-        console.log(secondes, hLimitH1 * 1.2, hLimitH2 * 1.12, hLimitB1 / 1.2, hLimitB2 / 1.2);
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2, 1.2);
         reset();
         clearTimeout(timeout);
     }
@@ -78,7 +77,7 @@ function arreterEt() {
         reelTotal.value += reelEt.value;
         totalTime += secondes;
         reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr');
-        reelTotal.style.color = heureReelColor(secondes, hLimitH1 * 1.2, hLimitH2 * 1.2, hLimitB1 / 1.2, hLimitB2 / 1.2);
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2, 1.2);
         reset();
         clearTimeout(timeout);
     }
@@ -103,7 +102,7 @@ function arreterEf() {
         reelEf.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2);
         totalTime += secondes;
         reelTotal.value = new Date(0, 0, 0, 0, 0, totalTime).toLocaleTimeString('fr');
-        reelTotal.style.color = heureReelColor(secondes, hLimitH1 * 1.2, hLimitH2 * 1.2, hLimitB1 / 1.2, hLimitB2 / 1.2);
+        reelTotal.style.color = heureReelColor(secondes, hLimitH1, hLimitH2, hLimitB1, hLimitB2, 1.2);
         reset();
         clearTimeout(timeout);
     }
@@ -120,17 +119,17 @@ function defilerTemps() {
     time = new Date(0, 0, 0, 0, 0, secondes).toLocaleTimeString('fr');
     chrono.textContent = time;
     chrono.style.color = heureColor(secondes, limit, hLimitH2);
-    timeout = setTimeout(defilerTemps, 1);
+    timeout = setTimeout(defilerTemps, 1000);
 }
 ;
-function heureReelColor(seconds, hLimitH1, hLimitH2, hLimitB1, hLimitB2) {
-    return (seconds <= hLimitB2 || seconds >= hLimitH2)
+function heureReelColor(seconds, hLimitH1, hLimitH2, hLimitB1, hLimitB2, range = 1) {
+    return (seconds <= hLimitB2 / range || seconds >= hLimitH2 * range)
         ? "red"
-        : (seconds <= hLimitB1 || seconds >= hLimitH1)
+        : (seconds <= hLimitB1 / range || seconds >= hLimitH1 * range)
             ? "orange"
             : "green";
 }
-function heureColor(seconds, limit, heureH) {
+function heureColor(seconds, limit, heureH, range = 1) {
     return (seconds < limit) ? "green" : (secondes >= heureH) ? "red" : "orange";
 }
 function reset() {

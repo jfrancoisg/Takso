@@ -58,16 +58,16 @@ final class Competance implements Imodel
 
     public function getConnaissanceById(int $id): array|false
     {
-        $sql = 'WITH RECURSIVE conn (id, nom, parent_id, level) AS (
-                    SELECT id, nom, parent_id, 0 
-                    FROM connaisance 
-                    WHERE id = :id
+        $sql = 'WITH RECURSIVE conn (id, nom, parent_id, eval, level) AS (
+                SELECT id, nom, parent_id, 0, 0 
+                FROM connaisance
+                WHERE id = :id
                 UNION ALL
-                    SELECT c.id, c.nom, c.parent_id, conn.level + 1 
-                    FROM connaisance c, conn
-                    WHERE c.parent_id = conn.id
-                )
-                SELECT * FROM conn;';
+                SELECT c.id, c.nom, c.parent_id, c.eval, conn.level + 1 
+                FROM connaisance c, conn
+                WHERE c.parent_id = conn.id
+            )
+            SELECT id, nom, parent_id, eval, level FROM conn';
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();

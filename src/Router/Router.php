@@ -22,7 +22,6 @@ namespace App\Router;
 
 use Exception\Class\MethodNotExist;
 use Exception\Controller\ErreurController;
-use App\Interface\Icontroller;
 
 /**
  * Router.
