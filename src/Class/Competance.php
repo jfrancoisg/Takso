@@ -8,7 +8,9 @@ use App\App;
 
 final class Competance
 {
+    /** @var string $html Code HTML */
     private string $html = '';
+    /** @var array<string> Tableau des compétences */
     private array $menu = [];
 
     public function afficheComptences(int $idCompetance): string
@@ -16,42 +18,64 @@ final class Competance
         $this->menu = App::getModel('competance')
             ->getConnaissanceById($idCompetance);
 
-        $this->displayMenu($this->menu);
+        $this->displayCompetence($this->menu);
         return $this->html;
     }
 
-    public function displayMenu($menu, $parent_id = 0, $level = 0): void
-    {
-        // Filtrer les éléments ayant le parent_id correspondant
-        $submenu = array_filter(
-            $menu,
-            function ($item) use ($parent_id) {
-                return $item['parent_id'] == $parent_id;
-            }
-        );
-
-        // Vérifier s'il y a des éléments dans le sous-menu
-        if (count($submenu) > 0) {
+    /**
+     * @param array<string> $menu      Tableau contenant des connaissances
+     * @param int           $parent_id Identifiant du parent
+     * @param int           $level     Niveau d'imbrication
+     */
+    public function displayCompetence(
+        array $menu,
+        int $parent_id = 0,
+        int $level = 0
+    ): void {
+        $subCompetence = $this->getCompetence($menu, $parent_id);
+        if (count($subCompetence) > 0) {
             $this->html .= '<ul>';
-            foreach ($submenu as $item) {
-                $this->html .= '<li><span>' . $item['nom'] . '</span>';
+            foreach ($subCompetence as $item) {
+                $this->html .= '<li><span>';
+                $this->html .= $item['parent_id'] !== null
+                    ? $item['nom'] : '<strong>' . $item['nom'] . '</strong>';
+                $this->html .= '</span>';
                 if ($item['parent_id'] !== null && $item['eval'] !== 0) {
-                    $this->html .= '<input type="range" 
-                        value="0" min="0" max="3" step="0.5" name="'
-                        . $item['id'] . '" id="'
-                        . $item['id'] . '" list="tickmarks">';
+                    $this->html .= '<input type="range" value="0" min="0"
+                    max="3" step="0.5" name="' . $item['id'] . '" 
+                    list="tickmarks">';
                 }
                 $this->html .= '</li>';
-                // Appeler récursivement la fonction pour afficher les sous-menus
-                $this->displayMenu($menu, $item['id'], $level + 1);
+                $this->displayCompetence($menu, (int) $item['id'], $level + 1);
             }
             $this->html .= '</ul>';
         }
     }
 
-    public function getHtml(int $idCompetance)
+    public function getHtml(int $idCompetance): string
     {
         $this->afficheComptences($idCompetance);
         return $this->html;
+    }
+
+    public function getCoef(): void
+    {
+        App::getModel('connaissance')->getCoef();
+    }
+
+    /**
+     * @param array<string> $competenceList Liste des compétences
+     * @param int               $parent_id      Identifiant du parent
+     *
+     * @return array<mixed>
+     */
+    private function getCompetence(array $competenceList, int $parent_id): array
+    {
+        return array_filter(
+            $competenceList,
+            static function ($item) use ($parent_id) {
+                return (int) $item['parent_id'] === $parent_id;
+            }
+        );
     }
 }

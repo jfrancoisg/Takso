@@ -6,5 +6,4 @@ namespace App\Class;
 
 final class Fichedwwm
 {
-    public array $data = [];
 }

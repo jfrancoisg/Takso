@@ -1,4 +1,3 @@
-"use strict";
 const chrono = document.querySelector("#chronometre");
 const startBtnP = document.querySelector("#pStart");
 const stopBtnP = document.querySelector("#pEnd");
@@ -17,7 +16,7 @@ const reelEt = document.querySelector("#reelEt");
 const reelEf = document.querySelector("#reelEf");
 const reelTotal = document.querySelector("#reelTotal");
 let secondes = 0;
-let timeout = 0;
+let timeout;
 let time = "";
 let totalTime = 0;
 let limit = 0;
@@ -30,7 +29,7 @@ let dateP = new Date(0, 0, 0);
 let dateEt = new Date(0, 0, 0);
 let dateEf = new Date(0, 0, 0);
 let dateChrono = new Date(0, 0, 0);
-function demarrerP() {
+export function demarrerP() {
     if (estArrete) {
         debutPInput.value = new Date().toLocaleTimeString('fr');
         startBtnP.disabled = true;

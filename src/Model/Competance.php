@@ -42,7 +42,24 @@ final class Competance implements Imodel
         return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
-    public function getListGroupByType(int $idTypeCompetence = 1): array|false
+    /**
+     * @return array<string>
+     */
+    public function getCoef(): array|false
+    {
+        $sql = 'SELECT id, coef FROM connaisance';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
+
+    /**
+     * @param int $idTypeCompetence Identifiant de la compétence
+     *
+     * @return array<string>|false
+     */
+    public function getListGroupByType(int $idTypeCompetence): array|false
     {
         $sql = 'SELECT c.id, tc.nom nom_type_competence, c.nom 
                 FROM competence c
@@ -56,6 +73,11 @@ final class Competance implements Imodel
         return $stmt->fetchAll();
     }
 
+    /**
+     * @apram ind $id Ientifiant de la connaissance
+     *
+     * @return array<string>|false
+     */
     public function getConnaissanceById(int $id): array|false
     {
         $sql = 'WITH RECURSIVE conn (id, nom, parent_id, eval, level) AS (

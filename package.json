@@ -1,14 +1,26 @@
 {
+  "name": "takso",
+  "description": "Evluation pour le DWWM",
+  "version": "1.0",
+  "license": "MIT",
   "type": "module",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jfrancoisg/Takso.git"
+  },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.0",
+    "vitest": "^0.33.0",
+    "sass": "^1.63.4"
   },
   "dependencies": {
     "bootstrap": "^5.3.0",
-    "dayjs": "^1.11.8",
     "font-awesome": "^4.7.0",
-    "node-fetch": "^2.6.11",
-    "sass": "^1.63.4"
+    "node-fetch": "^2.6.11"
+  },
+  "scripts": {
+    "vitest": "vitest --globals"
   }
 }

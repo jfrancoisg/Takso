@@ -18,7 +18,7 @@ final class CompteRenduController extends CoreController
         $data = [];
 
         $competance = App::getModel('competance');
-        $data['frontCompetenceListe'] = $competance->getListGroupByType();
+        $data['frontCompetenceListe'] = $competance->getListGroupByType(1);
         $data['backCompetenceListe'] = $competance->getListGroupByType(2);
 
         $this->render(

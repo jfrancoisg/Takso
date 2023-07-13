@@ -24,26 +24,26 @@ const reelEf = <HTMLInputElement>document.querySelector("#reelEf")
 
 const reelTotal = <HTMLInputElement>document.querySelector("#reelTotal")
 
-let secondes = 0
+let secondes: number = 0
 
-let timeout = 0
-let time = ""
-let totalTime = 0
+let timeout: NodeJS.Timeout
+let time: string = ""
+let totalTime: number = 0
 
-let limit = 0
-let hLimitB1 = 0
-let hLimitB2 = 0
-let hLimitH1 = 0
-let hLimitH2 = 0
+let limit: number = 0
+let hLimitB1: number = 0
+let hLimitB2: number = 0
+let hLimitH1: number = 0
+let hLimitH2: number = 0
 
-let estArrete = true
+let estArrete: boolean = true
 
-let dateP = new Date(0, 0, 0)
-let dateEt = new Date(0, 0, 0)
-let dateEf = new Date(0, 0, 0)
-let dateChrono = new Date(0, 0, 0)
+let dateP: Date = new Date(0, 0, 0)
+let dateEt: Date = new Date(0, 0, 0)
+let dateEf: Date = new Date(0, 0, 0)
+let dateChrono: Date = new Date(0, 0, 0)
 
-function demarrerP() {
+export function demarrerP() {
     if (estArrete) {
         debutPInput.value = new Date().toLocaleTimeString('fr')
         startBtnP.disabled = true

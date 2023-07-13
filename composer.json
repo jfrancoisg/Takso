@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "config": {
         "platform": {
-            "php": "8.2"
+            "php": "8.1"
         },
         "optimize-autoloader": false,
         "allow-plugins": {
@@ -14,8 +14,12 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Tests\\": "src/Tests/",
             "Exception\\": "src/Exception/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "src/Tests/"
         }
     },
     "authors": [

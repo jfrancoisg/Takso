@@ -1,14 +1,12 @@
 {
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "moduleResolution": "node",
         "noEmitOnError": false,
         "noUncheckedIndexedAccess": true,
         "outDir": "../public/assets/js",
         "removeComments": true,
         "strict": true,
-        "target": "ESNext"
+        "target": "esnext",
+        "module": "ES6"
     },
     "include": [
         "../public/assets/ts-scss/ts/**/*"
